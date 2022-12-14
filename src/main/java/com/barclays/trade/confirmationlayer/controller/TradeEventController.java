@@ -24,7 +24,6 @@ public class TradeEventController {
     @PostMapping("/event")
     public ResponseEntity<String> processTradeEvent(@RequestBody TradeEvent tradeEvent ){
 
-
-
+     return ResponseEntity.ok("resutl");
     }
 }

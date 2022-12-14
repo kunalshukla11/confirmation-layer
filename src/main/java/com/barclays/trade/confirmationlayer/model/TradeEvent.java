@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 /**
  * Class to represent trade event
  */
-
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

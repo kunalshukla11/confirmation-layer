@@ -1,9 +1,11 @@
 package com.barclays.trade.confirmationlayer.entity;
 
+import com.barclays.trade.confirmationlayer.model.BusinessLine;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 /**
@@ -32,16 +34,11 @@ public class ClientDetails implements Serializable {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "BUSINESS_LINE")
-    private String businessLine;
 
-    @OneToMany
-    @JoinColumn(name= "RULE_ID", referencedColumnName = "ID")
+    @OneToMany(targetEntity = ClientRules.class , fetch = FetchType.EAGER , cascade = CascadeType.ALL)
+    @JoinColumn(name= "CLIENT_NAME", referencedColumnName = "NAME")
     private List<ClientRules> clientRules;
 
-    @OneToMany
-    @JoinColumn(name= "CONFIRMATION_ID", referencedColumnName = "ID")
-    private List<ClientConfirmation> clientConfirmations;
 
 
 }

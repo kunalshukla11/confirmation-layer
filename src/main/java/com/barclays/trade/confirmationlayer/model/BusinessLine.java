@@ -11,7 +11,8 @@ public enum BusinessLine {
     DERIVS("Derivatives"),
     FX("Foreign Exchange"),
     STOCK_LONE("Stock Lone"),
-    PWM("PWM");
+    PWM("PWM"),
+    ALL("All business lines");
 
 
     private String value;
@@ -27,15 +28,12 @@ public enum BusinessLine {
 
 
     public static BusinessLine getBusinessLine(String value) {
-        BusinessLine result = null;
         for (BusinessLine businessLine : BusinessLine.values()) {
             if (businessLine.getValue().equals(value)) {
-                result = businessLine;
-            } else {
-                throw new UnsupportedOperationException("Not a valid business line");
+                return businessLine;
             }
         }
-        return result;
+        return ALL;
     }
 
 
