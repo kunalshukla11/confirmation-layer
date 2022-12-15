@@ -12,6 +12,12 @@ Json Static Rules
 Using Dedicated rule engine to compile all the rules once and to be used while running the application**
 
 
-Questions/Cofusions
+Questions/Confusions
 Should the account be Long instead of string
 How frequent rule changes for clients, Can we poll on interval or load on startup
+
+Quick commands:
+
+To run the application: mvn spring-boot:run
+To run the test scenarios: mvn test
+Once the application is started, swagger API link can be seen here: http://localhost:8080/swagger-ui.html
