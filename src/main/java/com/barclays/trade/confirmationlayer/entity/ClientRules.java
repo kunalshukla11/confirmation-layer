@@ -16,7 +16,7 @@ import java.io.Serializable;
 @ToString
 @Entity
 @Table(name = "CLIENT_RULES" )
-public class ClientRules  implements Serializable {
+public class ClientRules  implements Serializable,Comparable<ClientRules> {
 
     private static final long serialVersionUid = 1L;
 
@@ -42,4 +42,8 @@ public class ClientRules  implements Serializable {
     private BusinessLine businessLine;
 
 
+    @Override
+    public int compareTo(ClientRules o) {
+        return this.ruleOrder.compareTo(o.ruleOrder);
+    }
 }

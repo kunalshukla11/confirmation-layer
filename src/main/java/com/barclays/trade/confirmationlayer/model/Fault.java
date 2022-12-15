@@ -13,7 +13,7 @@ Class to represent error fields
 public class Fault {
 
     private String errorMsg;
-    private String errorType;
+    private ErrorType errorType;
 
     private String description;
 }

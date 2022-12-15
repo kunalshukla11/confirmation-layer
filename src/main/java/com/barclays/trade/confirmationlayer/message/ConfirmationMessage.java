@@ -23,4 +23,11 @@ public class ConfirmationMessage extends Message {
 
     private List<ConfirmationDto> confirmationDtoList;
 
+    @Override
+    public String toString() {
+        return "ConfirmationMessage{" +
+                "fault=" + fault +
+                ", confirmationDtoList=" + confirmationDtoList +
+                '}';
+    }
 }
