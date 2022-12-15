@@ -6,9 +6,13 @@ INSERT into CLIENT_RULES (ID, CLIENT_NAME, RULE_ORDER, RULE_IDENTIFIER, ACCOUNT,
 INSERT into CLIENT_RULES (ID, CLIENT_NAME, RULE_ORDER, RULE_IDENTIFIER, ACCOUNT, BUSINESS_LINE) values (5,'TNL0001',4,'TNL-SWIFT', 'ALL', 'EQUITY');
 
 -----
---with Rule 1 two cofirmation going through
+--with Rule id 1 two confirmation going through
 INSERT into CLIENT_CONFIRMATION (ID, CONFIRMATION_ID , RULE_ID , CONFIRMATION_TYPE) values (1,5, 1, 'XONTRO' );
 INSERT into CLIENT_CONFIRMATION (ID, CONFIRMATION_ID , RULE_ID , CONFIRMATION_TYPE) values (2,3, 1, 'POSTAL' );
+
+--with Rule id 4 two confirmation going through fro document
+INSERT into CLIENT_CONFIRMATION (ID, CONFIRMATION_ID , RULE_ID , CONFIRMATION_TYPE) values (3,2, 4, 'DOCUMENT');
+
 
 --static data for confirmations
 INSERT into CONFIRMATION (ID, CONFIRMATION_TYPE, DESCRIPTION ,DELIVERY_MODES ,BUSINESS_LINES) values (1, 'SUMMARY', 'multiple trade', 'Fax/email/File', 'EQUITY,FID');
