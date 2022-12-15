@@ -1,21 +1,26 @@
 package com.barclays.trade.confirmationlayer.message;
 
 import com.barclays.trade.confirmationlayer.model.ConfirmationDto;
+import com.barclays.trade.confirmationlayer.model.Fault;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
+
+import java.util.List;
 
 /**
  * This class represents the output of trade events
  */
-public class ConfirmationMessage implements Message<ConfirmationDto> {
+@EqualsAndHashCode(callSuper = true)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ConfirmationMessage extends Message {
 
 
-    private ConfirmationDto confirmation;
-    @Override
-    public void setMessage(ConfirmationDto confirmation) {
-        this.confirmation = confirmation;
-    }
+    private Fault fault;
 
-    @Override
-    public ConfirmationDto getMessage() {
-        return this.confirmation;
-    }
+    private List<ConfirmationDto> confirmationDtoList;
+
 }

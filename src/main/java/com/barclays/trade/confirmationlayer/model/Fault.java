@@ -14,4 +14,6 @@ public class Fault {
 
     private String errorMsg;
     private String errorType;
+
+    private String description;
 }

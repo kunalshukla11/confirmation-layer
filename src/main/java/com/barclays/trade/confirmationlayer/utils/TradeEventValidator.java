@@ -2,9 +2,10 @@ package com.barclays.trade.confirmationlayer.utils;
 
 import com.barclays.trade.confirmationlayer.exception.MessageValidationException;
 import com.barclays.trade.confirmationlayer.model.TradeEvent;
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
-
+@Component
 public class TradeEventValidator implements Validator<TradeEvent> {
     @Override
     public void validate(TradeEvent tradeEvent) {
@@ -15,7 +16,7 @@ public class TradeEventValidator implements Validator<TradeEvent> {
 
     private void validateField(Object object, String field) {
         if(Objects.isNull(object)){
-            throw new MessageValidationException("Required field"+ field + "is null");
+            throw new MessageValidationException("Required field"+ field + " is null");
         }
     }
 }
