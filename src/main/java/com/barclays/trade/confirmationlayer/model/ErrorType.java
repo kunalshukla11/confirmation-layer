@@ -3,5 +3,6 @@ package com.barclays.trade.confirmationlayer.model;
 public enum ErrorType {
     VALIDATION,
     NO_DATA,
-    RULE_VALIDATION;
+    RULE_VALIDATION,
+    INVALID_CONFIRMATION;
 }

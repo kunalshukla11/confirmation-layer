@@ -4,6 +4,10 @@ Assumptions for the confirmation layer
   Can discuss on making it via MQ or kafka based on requirements
 
 
+--Cannot implement below implementations but could have done if time permits
+Save sent and failed confirmation , and also add retry controller
+
+
 Future aspect for designing rule engine for defining confirmations
 Instead of having database , we can use below Options
 Json Static Rules

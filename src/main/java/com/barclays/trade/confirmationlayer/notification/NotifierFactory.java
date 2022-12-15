@@ -13,9 +13,12 @@ public class NotifierFactory {
     private final SummaryNotification summaryNotification;
     private final XontroNotification xontroNotification;
 
-    public NotifierFactory(SummaryNotification summaryNotification, XontroNotification xontroNotification) {
+    private final InvalidConfirmationNotification invalidConfirmationNotification;
+
+    public NotifierFactory(SummaryNotification summaryNotification, XontroNotification xontroNotification, InvalidConfirmationNotification invalidConfirmationNotification) {
         this.summaryNotification = summaryNotification;
         this.xontroNotification = xontroNotification;
+        this.invalidConfirmationNotification = invalidConfirmationNotification;
     }
 
     public  Notifier<Message> getNotifier(ConfirmationType confirmationType){
@@ -25,7 +28,7 @@ public class NotifierFactory {
         } else if (ConfirmationType.XONTRO.equals(confirmationType)) {
             return this.xontroNotification;
         }else{
-            throw new  UnsupportedOperationException("No valid confirmations");
+            return this.invalidConfirmationNotification;
         }
     }
 }

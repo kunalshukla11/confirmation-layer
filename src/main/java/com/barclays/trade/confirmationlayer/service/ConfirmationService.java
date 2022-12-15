@@ -5,6 +5,9 @@ import com.barclays.trade.confirmationlayer.entity.Confirmation;
 import com.barclays.trade.confirmationlayer.message.ConfirmationMessage;
 import com.barclays.trade.confirmationlayer.message.Message;
 import com.barclays.trade.confirmationlayer.model.ConfirmationDto;
+import com.barclays.trade.confirmationlayer.model.ErrorType;
+import com.barclays.trade.confirmationlayer.model.Fault;
+import com.barclays.trade.confirmationlayer.notification.InvalidConfirmationNotification;
 import com.barclays.trade.confirmationlayer.notification.Notifier;
 import com.barclays.trade.confirmationlayer.notification.NotifierFactory;
 import com.barclays.trade.confirmationlayer.startup.StaticConfirmationLoader;
@@ -41,6 +44,7 @@ public class ConfirmationService  {
             ConfirmationMessage messageToNotify = ConfirmationMessage.builder()
                     .confirmationDtoList(Collections.singletonList(confirmationDto)).build();
             Notifier<Message> notifier = notifierFactory.getNotifier(confirmation.getConfirmationType());
+            handleInvalidConfirmationType(notifier, messageToNotify);
             //message used by specific notifier service
             notifier.notify(messageToNotify);
 
@@ -48,8 +52,18 @@ public class ConfirmationService  {
        return ConfirmationMessage.builder().confirmationDtoList(apiResponseDto).build();
     }
 
+    private void handleInvalidConfirmationType(Notifier<Message> notifier, ConfirmationMessage messageToNotify) {
+        if(notifier instanceof InvalidConfirmationNotification){
+            Fault fault = new Fault();
+            fault.setDescription("No valid type of confirmation claimed by the rule");
+            fault.setErrorType(ErrorType.INVALID_CONFIRMATION);
+            messageToNotify = ConfirmationMessage.builder().fault(fault).build();
+        }
+    }
+
     private ConfirmationDto creatConfirmationDto(Confirmation confirmation) {
        return ConfirmationDto.builder()
+               .message("Notifying for "+ confirmation.getConfirmationType())
                 .msgType(confirmation.getConfirmationType().name())
                 .msgMedium(confirmation.getDeliveryModes())
                 .build();

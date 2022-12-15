@@ -9,6 +9,7 @@ public enum ConfirmationType {
     POSTAL,
     CTM,
     XONTRO,
-    SWIFT;
+    SWIFT,
+    INVALID_CONFIRMATION;
 
 }
